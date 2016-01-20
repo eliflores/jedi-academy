@@ -1,2 +1,5 @@
 .idea/
-*gout/
+*out/
+*.iml
+*.ipr
+*.iws

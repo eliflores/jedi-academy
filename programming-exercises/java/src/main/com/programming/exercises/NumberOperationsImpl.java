@@ -1,6 +1,5 @@
 package com.programming.exercises;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,43 +34,32 @@ public class NumberOperationsImpl implements NumberOperations {
 
     @Override
     public boolean isSameList(List<Integer> list1, List<Integer> list2) {
-        if (list1.size() == list2.size()) {
+        if (list1.size() != list2.size()) {
             return false;
         }
 
-        Map<Integer, List<Integer>> coincidencesMap = new HashMap<>();
-        for (int i =0; i < list1.size(); i++) {
+        Map<Integer, Integer> appearancesMap = new HashMap<>();
+        for (int i = 0; i < list1.size(); i++) {
             int n1 = list1.get(i);
             int n2 = list2.get(i);
-            List<Integer> coincidencesList = coincidencesMap.get(n1);
-            if (coincidencesList == null) {
-                coincidencesList = new ArrayList<>();
-                coincidencesList.add(1);
-                coincidencesMap.put(n1, coincidencesList);
-            } else { // Update value on first list
-                int coincidenceInFirstList = coincidencesList.get(0);
-                coincidenceInFirstList++;
-            }
-
-            if (n1 == n2) {
-                List<Integer> coincidencesListForN2 = coincidencesMap.get(n2);
-                if(coincidencesListForN2 == null) {
-                    coincidencesListForN2 = new ArrayList<>();
-                    coincidencesListForN2.add(0);
-                    coincidencesListForN2.add(1);
-                    coincidencesMap.put(n2, coincidencesList);
-                } else {
-                    if (coincidencesList.size() > 1) {
-                        int n = coincidencesListForN2.get(1);
-                        n++;
-                    } else {
-                        coincidencesListForN2.add(1);
-                    }
-                }
-            }
+            incrementAppearances(appearancesMap, n1);
+            incrementAppearances(appearancesMap, n2);
         }
 
-        // compare map
-        return false;
+        for (Integer appearances : appearancesMap.values()) {
+            if (appearances % 2 != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void incrementAppearances(Map<Integer, Integer> coincidencesMap, int number) {
+        Integer numberOfAppearances = coincidencesMap.get(number);
+        if (numberOfAppearances != null) {
+            coincidencesMap.put(number, numberOfAppearances + 1);
+        } else {
+            coincidencesMap.put(number, 1);
+        }
     }
 }
