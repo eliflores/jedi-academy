@@ -2,6 +2,9 @@ package com.programming.exercises.hackerrank;
 
 import java.util.Scanner;
 
+/**
+ * https://www.hackerrank.com/challenges/simple-array-sum
+ */
 public class SimpleArraySum {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
