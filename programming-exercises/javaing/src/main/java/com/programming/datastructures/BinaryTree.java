@@ -6,18 +6,6 @@ import java.util.Queue;
 public class BinaryTree {
     private Node _root;
 
-    private static class Node {
-        Node _left;
-        Node _right;
-        int _data;
-
-        Node(int data) {
-            _left = null;
-            _right = null;
-            _data = data;
-        }
-    }
-
     public void insert(int data) {
         _root = insert(_root, data);
     }
@@ -153,5 +141,17 @@ public class BinaryTree {
         }
 
         return node;
+    }
+
+    private static class Node {
+        Node _left;
+        Node _right;
+        int _data;
+
+        Node(int data) {
+            _left = null;
+            _right = null;
+            _data = data;
+        }
     }
 }
