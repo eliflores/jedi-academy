@@ -21,114 +21,6 @@ public class BinaryTree {
         return 1 + Math.max(getHeight(root._left), getHeight(root._right));
     }
 
-    public void printMeBSF() {
-        printMeBSF(_root);
-        System.out.println("  ");
-    }
-
-    private void printMeBSF(Node node) {
-        if (node == null) {
-            return;
-        }
-        System.out.print(node._data + " ");
-        printMeBSF(node._left);
-        printMeBSF(node._right);
-    }
-
-    /**
-     * Print trees in level order. Each line represents a level in the tree. Does not use recursion.
-     */
-    public void printMeNonRecursive() {
-        Queue<Node> queue = new LinkedList<>();
-        if (_root != null) {
-            queue.add(_root);
-            while (!queue.isEmpty()) {
-                Node node = queue.poll();
-                if (node != null) {
-                    System.out.print(node._data + " ");
-                    queue.add(node._left);
-                    queue.add(node._right);
-                }
-            }
-        }
-        //TODO Do not like this line below, rather return a string with the nodes data and let the caller print it.
-        System.out.println("  ");
-    }
-
-    /**
-     * Print a mirror tree from original tree in level order. Each line represents a level in the mirror tree. Dos not use recursion.
-     */
-    public void printMyMirrorTreeNonRecursive() {
-        Queue<Node> queue = new LinkedList<>();
-        if (_root != null) {
-            queue.add(_root);
-            while (!queue.isEmpty()) {
-                Node node = queue.poll();
-                if (node != null) {
-                    System.out.print(node._data + " ");
-                    queue.add(node._right);
-                    queue.add(node._left);
-                }
-            }
-        }
-        //TODO Do not like this line below, rather return a string with the nodes data and let the caller print it.
-        System.out.println(" ");
-    }
-
-    /**
-     * Print trees in level order. Each line represents a level in the tree. Uses recursion.
-     */
-    public void printMeRecursive() {
-        printLevelOrder(_root);
-        //TODO Do not like this line below, rather return a string with the nodes data and let the caller print it.
-        System.out.println("  ");
-    }
-
-    /**
-     * Print a mirror tree from original tree in level order. Each line represents a level in the mirror tree. Uses recursion.
-     */
-    public void printMyMirrorTreeRecursive() {
-        printMirrorTreeLevelOrder(_root);
-        //TODO Do not like this line below, rather return a string with the nodes data and let the caller print it.
-        System.out.println("  ");
-    }
-
-    private void printMirrorTreeLevelOrder(Node node) {
-        int treeHeight = getHeight();
-        for (int level = 1; level <= treeHeight; level++) {
-            printMirrorTreeNodesInLevel(node, level);
-        }
-    }
-
-    private void printMirrorTreeNodesInLevel(Node node, int level) {
-        if (node != null) {
-            if (level == 1) {
-                System.out.print(node._data + " ");
-            } else if (level > 1) {
-                printMirrorTreeNodesInLevel(node._right, level - 1);
-                printMirrorTreeNodesInLevel(node._left, level - 1);
-            }
-        }
-    }
-
-    private void printLevelOrder(Node node) {
-        int treeHeight = getHeight();
-        for (int level = 1; level <= treeHeight; level++) {
-            printNodesInLevel(node, level);
-        }
-    }
-
-    private void printNodesInLevel(Node node, int level) {
-        if (node != null) {
-            if (level == 1) {
-                System.out.print(node._data + " ");
-            } else if (level > 1) {
-                printNodesInLevel(node._left, level - 1);
-                printNodesInLevel(node._right, level - 1);
-            }
-        }
-    }
-
     private Node insert(Node node, int data) {
         if (node == null) {
             node = new Node(data);
@@ -141,6 +33,115 @@ public class BinaryTree {
         }
 
         return node;
+    }
+
+    public String traverseMeBSF() {
+        StringBuilder stringBuilder = new StringBuilder();
+        traverseBSF(_root, stringBuilder);
+        return stringBuilder.toString();
+    }
+
+    private void traverseBSF(Node node, StringBuilder stringBuilder) {
+        if (node == null) {
+            return;
+        }
+        stringBuilder.append(node._data).append(" ");
+        traverseBSF(node._left, stringBuilder);
+        traverseBSF(node._right, stringBuilder);
+    }
+
+    /**
+     * Traverse this tree in level order. Each line represents a level in the tree. Does not use recursion.
+     */
+    public String traverseMeNonRecursive() {
+        StringBuilder stringBuilder = new StringBuilder();
+        Queue<Node> queue = new LinkedList<>();
+        if (_root != null) {
+            queue.add(_root);
+            while (!queue.isEmpty()) {
+                Node node = queue.poll();
+                if (node != null) {
+                    stringBuilder.append(node._data).append(" ");
+                    queue.add(node._left);
+                    queue.add(node._right);
+                }
+            }
+        }
+        return stringBuilder.toString();
+    }
+
+    /**
+     * Traverse a mirror tree from this tree in level order. Each line represents a level in the mirror tree. Dos not use recursion.
+     */
+    public String traverseMyMirrorTreeNonRecursive() {
+        StringBuilder stringBuilder = new StringBuilder();
+        Queue<Node> queue = new LinkedList<>();
+        if (_root != null) {
+            queue.add(_root);
+            while (!queue.isEmpty()) {
+                Node node = queue.poll();
+                if (node != null) {
+                    stringBuilder.append(node._data).append(" ");
+                    queue.add(node._right);
+                    queue.add(node._left);
+                }
+            }
+        }
+        return stringBuilder.toString();
+    }
+
+    /**
+     * Traverse this tree in level order. Each line represents a level in the tree. Uses recursion.
+     */
+    public String traverseMeLevelOrderRecursive() {
+        StringBuilder stringBuilder = new StringBuilder();
+        traverseLevelOrderRecursive(_root, stringBuilder);
+        return stringBuilder.toString();
+    }
+
+    /**
+     * Traverse a mirror tree from this tree in level order. Each line represents a level in the mirror tree. Uses recursion.
+     */
+    public String traverseMyMirrorTreeRecursive() {
+        StringBuilder stringBuilder = new StringBuilder();
+        traverseMirrorTreeLevelOrder(_root, stringBuilder);
+        return stringBuilder.toString();
+    }
+
+    private void traverseMirrorTreeLevelOrder(Node node, StringBuilder stringBuilder) {
+        int treeHeight = getHeight();
+        for (int level = 1; level <= treeHeight; level++) {
+            traverseMirrorTreeInLevel(node, level, stringBuilder);
+        }
+    }
+
+    private void traverseMirrorTreeInLevel(Node node, int level, StringBuilder stringBuilder) {
+        if (node != null) {
+            if (level == 1) {
+                stringBuilder.append(node._data).append(" ");
+            } else if (level > 1) {
+                traverseMirrorTreeInLevel(node._right, level - 1, stringBuilder);
+                traverseMirrorTreeInLevel(node._left, level - 1, stringBuilder);
+            }
+        }
+    }
+
+    private void traverseLevelOrderRecursive(Node node, StringBuilder stringBuilder) {
+        int treeHeight = getHeight();
+        for (int level = 1; level <= treeHeight; level++) {
+            traverseNodesInLevel(node, level, stringBuilder);
+        }
+    }
+
+    private void traverseNodesInLevel(Node node, int level, StringBuilder stringBuilder) {
+        if (node != null) {
+            if (level == 1) {
+                stringBuilder.append(node._data).append(" ");
+            } else if (level > 1) {
+                traverseNodesInLevel(node._left, level - 1, stringBuilder);
+                traverseNodesInLevel(node._right, level - 1, stringBuilder);
+            }
+        }
     }
 
     private static class Node {

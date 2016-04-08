@@ -13,15 +13,10 @@ public class SuperTreePrinter {
             binaryTree.insert(data);
         }
         System.out.println("Tree Height: " + binaryTree.getHeight());
-        System.out.println("Print Tree in level order (recursive):");
-        binaryTree.printMeRecursive();
-        System.out.println("Print Mirror Tree in level order (recursive):");
-        binaryTree.printMyMirrorTreeRecursive();
-        System.out.println("Print Tree using BFS (recursive):");
-        binaryTree.printMeBSF();
-        System.out.println("Print Tree in level order (non-recursive):");
-        binaryTree.printMeNonRecursive();
-        System.out.println("Print Mirror Tree in level order (non-recursive):");
-        binaryTree.printMyMirrorTreeNonRecursive();
+        System.out.println("Print Tree in level order (recursive): " + binaryTree.traverseMeLevelOrderRecursive());
+        System.out.println("Print Mirror Tree in level order (recursive):" + binaryTree.traverseMyMirrorTreeRecursive());
+        System.out.println("Print Tree using BFS (recursive): " + binaryTree.traverseMeBSF());
+        System.out.println("Print Tree in level order (non-recursive): " + binaryTree.traverseMeNonRecursive());
+        System.out.println("Print Mirror Tree in level order (non-recursive): " + binaryTree.traverseMyMirrorTreeNonRecursive());
     }
 }
