@@ -12,6 +12,8 @@ public class SuperTreePrinter {
             int data = in.nextInt();
             binaryTree.insert(data);
         }
+
+        //Todo compare times for recursive and non-recursive solutions.
         System.out.println("Tree Height: " + binaryTree.getHeight());
         System.out.println("Print Tree in level order (recursive): " + binaryTree.traverseMeLevelOrderRecursive());
         System.out.println("Print Mirror Tree in level order (recursive):" + binaryTree.traverseMyMirrorTreeRecursive());
