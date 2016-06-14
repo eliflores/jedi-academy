@@ -1,6 +1,7 @@
 package com.programming.exercises;
 
 import java.util.List;
+import java.util.Objects;
 
 public interface ListOperations {
     /**
@@ -26,4 +27,13 @@ public interface ListOperations {
      * @param n positions to be rotated.
      */
     void rotateList(List<Integer> list, int n);
+
+    /**
+     * Method that combines two lists by alternatingly taking elements.
+     * For example: given the two lists [a, b, c] and [1, 2, 3], the function should return [a, 1, b, 2, c, 3].
+     * @param listA
+     * @param listB
+     * @return
+     */
+    List<Object> combineLists(List<Object> listA, List<Object> listB);
 }

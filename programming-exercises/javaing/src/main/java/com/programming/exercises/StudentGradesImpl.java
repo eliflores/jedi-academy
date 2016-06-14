@@ -1,5 +1,7 @@
 package com.programming.exercises;
 
+import java.util.Arrays;
+
 public class StudentGradesImpl implements StudentGrades {
     @Override
     public int findHighestGrade(int[] grades) {
@@ -25,8 +27,6 @@ public class StudentGradesImpl implements StudentGrades {
 
     @Override
     public void sortStudentsByGrade(int[] grades) {
-        for (int grade : grades) {
-
-        }
+        Arrays.sort(grades);
     }
 }

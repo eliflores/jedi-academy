@@ -16,4 +16,15 @@ public class MathMagicTest {
         assertThat(mathMagic.factorial(9), is(362880L));
     }
 
+    @Test
+    public void firstNFibonacciNumbers() {
+        MathMagic mathMagic = new MathMagicImpl();
+        assertThat(mathMagic.firstNFibonacciNumbers(-1), is(new long[0]));
+        assertThat(mathMagic.firstNFibonacciNumbers(0), is(new long[0]));
+        assertThat(mathMagic.firstNFibonacciNumbers(1), is(new long[]{0L}));
+        assertThat(mathMagic.firstNFibonacciNumbers(2), is(new long[]{0L, 1L}));
+        assertThat(mathMagic.firstNFibonacciNumbers(3), is(new long[]{0L, 1L, 1L}));
+        assertThat(mathMagic.firstNFibonacciNumbers(4), is(new long[]{0L, 1L, 1L, 2L}));
+        assertThat(mathMagic.firstNFibonacciNumbers(10), is(new long[]{0L, 1L, 1L, 2L, 3L, 5L, 8L, 13L, 21L, 34L}));
+    }
 }

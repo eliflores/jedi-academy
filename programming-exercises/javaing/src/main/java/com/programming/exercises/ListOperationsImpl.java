@@ -1,11 +1,8 @@
 package com.programming.exercises;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-public class ListOperationsImpl implements ListOperations {
+class ListOperationsImpl implements ListOperations {
     @Override
     public boolean isSameList(List<Integer> list1, List<Integer> list2) {
         if (list1.size() != list2.size()) {
@@ -76,6 +73,29 @@ public class ListOperationsImpl implements ListOperations {
             k++;
         }
     }
+
+    @Override
+    public List<Object> combineLists(List<Object> listA, List<Object> listB) {
+        if (listA == null || listB == null) {
+            return Collections.emptyList();
+        }
+
+        int listASize = listA.size();
+        int listBSize = listB.size();
+        List<Object> combinedList = new ArrayList<>(listASize + listBSize);
+        int maxSize = Math.max(listASize, listBSize);
+
+        for (int i = 0; i < maxSize; i++) {
+            if (i < listASize) {
+                combinedList.add(listA.get(i));
+            }
+            if (i < listBSize) {
+                combinedList.add(listB.get(i));
+            }
+        }
+        return combinedList;
+    }
+
 
     private void incrementAppearances(Map<Integer, Integer> coincidencesMap, int number) {
         Integer numberOfAppearances = coincidencesMap.get(number);
