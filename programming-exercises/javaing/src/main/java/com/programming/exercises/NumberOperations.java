@@ -1,6 +1,6 @@
 package com.programming.exercises;
 
-public interface NumberOperations {
+interface NumberOperations {
     /**
      * Given any N distinct integers, how many triples sum to exactly zero.
      *
@@ -10,8 +10,26 @@ public interface NumberOperations {
     int threeSum(int[] numbers);
 
     /**
-     * @param numbers array of N integers.
-     * @return return the sum of the numbers in the array.
+     * Given a positive number <code>n</code> return the list of its digits ordered by weight (unit, ten, hundreds,
+     * etc).
+     * For example: 450, return [4, 5, 0]
+     * @param n
+     * @return
      */
-    int sumNumbers(int[] numbers);
+    int[] digits(int n);
+
+    /**
+     * Given an array of non negative integers, arrange them such that they form the largest possible number.
+     * For example, given [50, 2, 1, 9], the largest formed number is 95021.
+     * @param numbers
+     * @return The largest possible number from the combination of numbers in the list.
+     */
+    long largestArrangedNumber(int [] numbers);
+
+    /**
+     * Reverse an array of numbers
+     *
+     * @param numbers array to be reversed
+     */
+    void reverse(int[] numbers);
 }
