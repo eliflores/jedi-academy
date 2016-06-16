@@ -1,6 +1,7 @@
 package com.programming.exercises;
 
 import java.util.Scanner;
+
 import com.programming.datastructures.BinaryTree;
 
 public class SuperTreePrinter {
@@ -13,12 +14,14 @@ public class SuperTreePrinter {
             binaryTree.insert(data);
         }
 
-        //Todo compare times for recursive and non-recursive solutions.
         System.out.println("Tree Height: " + binaryTree.getHeight());
+
         System.out.println("Print Tree in level order (recursive): " + binaryTree.traverseMeLevelOrderRecursive());
-        System.out.println("Print Mirror Tree in level order (recursive):" + binaryTree.traverseMyMirrorTreeRecursive());
-        System.out.println("Print Tree using BFS (recursive): " + binaryTree.traverseMeBSF());
-        System.out.println("Print Tree in level order (non-recursive): " + binaryTree.traverseMeNonRecursive());
+        System.out.println("Print Mirror Tree in level order (recursive): " + binaryTree.traverseMirrorTreeRecursive());
+        System.out.println("Print Tree using BF (recursive): " + binaryTree.traverseMeBreadthFirstRecursive());
+
+        System.out.println("Print Tree in level order (non-recursive): " + binaryTree.traverseMeLevelOrderNonRecursive());
         System.out.println("Print Mirror Tree in level order (non-recursive): " + binaryTree.traverseMyMirrorTreeNonRecursive());
+        System.out.println("Print Tree using BF (non-recursive): " + binaryTree.traverseMeBreadthFirstNonRecursive());
     }
 }

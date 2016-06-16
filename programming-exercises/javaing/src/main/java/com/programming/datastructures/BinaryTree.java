@@ -35,29 +35,39 @@ public class BinaryTree {
         return node;
     }
 
-    public String traverseMeBSF() {
+    public String traverseMeBreadthFirstRecursive() {
         StringBuilder stringBuilder = new StringBuilder();
-        traverseBSF(_root, stringBuilder);
+        traverseBreadthFirst(_root, stringBuilder);
         return stringBuilder.toString();
     }
 
-    private void traverseBSF(Node node, StringBuilder stringBuilder) {
+    private void traverseBreadthFirst(Node node, StringBuilder stringBuilder) {
         if (node == null) {
             return;
         }
         stringBuilder.append(node._data).append(" ");
-        traverseBSF(node._left, stringBuilder);
-        traverseBSF(node._right, stringBuilder);
+        traverseBreadthFirst(node._left, stringBuilder);
+        traverseBreadthFirst(node._right, stringBuilder);
     }
 
     /**
      * Traverse this tree in level order. Each line represents a level in the tree. Does not use recursion.
      */
-    public String traverseMeNonRecursive() {
+    public String traverseMeBreadthFirstNonRecursive() {
+        StringBuilder stringBuilder = new StringBuilder();
+        if (_root != null) {
+            stringBuilder.append(_root._data).append(" ");
+            stringBuilder.append(traverseTreeNonRecursive(_root._left));
+            stringBuilder.append(traverseTreeNonRecursive(_root._right));
+        }
+        return stringBuilder.toString();
+    }
+
+    private String traverseTreeNonRecursive(Node root) {
         StringBuilder stringBuilder = new StringBuilder();
         Queue<Node> queue = new LinkedList<>();
-        if (_root != null) {
-            queue.add(_root);
+        if (root != null) {
+            queue.add(root);
             while (!queue.isEmpty()) {
                 Node node = queue.poll();
                 if (node != null) {
@@ -68,6 +78,16 @@ public class BinaryTree {
             }
         }
         return stringBuilder.toString();
+    }
+
+    /**
+     * Traverse this tree in level order. Each line represents a level in the tree. Does not use recursion.
+     */
+    public String traverseMeLevelOrderNonRecursive() {
+        if (_root != null) {
+            return traverseTreeNonRecursive(_root);
+        }
+        return "";
     }
 
     /**
@@ -102,7 +122,7 @@ public class BinaryTree {
     /**
      * Traverse a mirror tree from this tree in level order. Each line represents a level in the mirror tree. Uses recursion.
      */
-    public String traverseMyMirrorTreeRecursive() {
+    public String traverseMirrorTreeRecursive() {
         StringBuilder stringBuilder = new StringBuilder();
         traverseMirrorTreeLevelOrder(_root, stringBuilder);
         return stringBuilder.toString();
