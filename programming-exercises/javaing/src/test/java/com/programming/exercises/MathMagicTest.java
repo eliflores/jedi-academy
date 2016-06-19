@@ -3,7 +3,7 @@ package com.programming.exercises;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 public class MathMagicTest {
     @Test
@@ -14,6 +14,17 @@ public class MathMagicTest {
         assertThat(mathMagic.factorial(4), is(24L));
         assertThat(mathMagic.factorial(7), is(5040L));
         assertThat(mathMagic.factorial(9), is(362880L));
+    }
+
+    @Test
+    public void factorialWithRecursion() {
+        MathMagic mathMagic = new MathMagicImpl();
+        assertThat(mathMagic.factorialWithRecursion(0), is(1L));
+        assertThat(mathMagic.factorialWithRecursion(1), is(1L));
+        assertThat(mathMagic.factorialWithRecursion(4), is(24L));
+        assertThat(mathMagic.factorialWithRecursion(7), is(5040L));
+        assertThat(mathMagic.factorialWithRecursion(9), is(362880L));
+
     }
 
     @Test

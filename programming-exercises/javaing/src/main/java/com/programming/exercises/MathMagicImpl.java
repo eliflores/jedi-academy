@@ -12,6 +12,15 @@ class MathMagicImpl implements MathMagic {
     }
 
     @Override
+    public long factorialWithRecursion(int n) {
+        if (n == 0 || n == 1) {
+            return 1;
+        }
+
+        return n * factorialWithRecursion(n - 1);
+    }
+
+    @Override
     public long[] firstNFibonacciNumbers(int n) {
         if (n <= 0) {
             return new long[0];
@@ -28,5 +37,4 @@ class MathMagicImpl implements MathMagic {
 
         return fibonacciNumbers;
     }
-
 }
