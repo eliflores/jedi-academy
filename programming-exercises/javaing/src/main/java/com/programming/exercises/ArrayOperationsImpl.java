@@ -1,7 +1,6 @@
 package com.programming.exercises;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 class ArrayOperationsImpl implements ArrayOperations {
     @Override
