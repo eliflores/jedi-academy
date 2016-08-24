@@ -71,9 +71,9 @@ public class ArrayOperationsTest {
         assertThat(arrayOperations.findSumTuples(new int[]{1, 2, 3}, 10), is(new int[0][]));
         assertThat(arrayOperations.findSumTuples(new int[]{1, 2, 3}, -1), is(new int[0][]));
         assertThat(arrayOperations.findSumTuples(new int[]{3, 5}, 8), is(new int[][]{{3, 5}}));
-        assertThat(arrayOperations.findSumTuples(new int[]{1, 2, 4, -1}, 3), is(new int[][]{{1, 2}, {4, -1}}));
+        assertThat(arrayOperations.findSumTuples(new int[]{1, 2, 4, -1}, 3), is(new int[][]{{-1, 4}, {1, 2}}));
         assertThat(arrayOperations.findSumTuples(new int[]{1, 2, 3, 4, 5, 6, 7, 10, -2, -7}, 3),
-                is(new int[][]{{1, 2}, {5, -2}, {10, -7}}));
+                is(new int[][]{{1, 2}, {-2, 5}, {-7, 10}}));
 
     }
 }

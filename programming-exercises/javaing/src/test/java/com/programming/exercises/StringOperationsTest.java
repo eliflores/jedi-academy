@@ -6,9 +6,10 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class StringOperationsTest {
+    private final StringOperations stringOperations = new StringOperationsImpl();
+
     @Test
     public void countSubstrings() {
-        StringOperations stringOperations = new StringOperationsImpl();
         assertThat(stringOperations.countSubstrings(null, null), is(0));
         assertThat(stringOperations.countSubstrings(null, ""), is(0));
         assertThat(stringOperations.countSubstrings("", null), is(0));
@@ -25,5 +26,15 @@ public class StringOperationsTest {
         assertThat(stringOperations.countSubstrings("foo", "foo"), is(1));
 
         assertThat(stringOperations.countSubstrings("patita paseaba patita", "patita"), is(2));
+    }
+
+    @Test
+    public void stringStartsWithUppercaseLetter() {
+        assertFalse(stringOperations.stringStartsWithUppercaseLetter(null));
+        assertFalse(stringOperations.stringStartsWithUppercaseLetter(""));
+        assertFalse(stringOperations.stringStartsWithUppercaseLetter("-"));
+        assertFalse(stringOperations.stringStartsWithUppercaseLetter("?"));
+        assertFalse(stringOperations.stringStartsWithUppercaseLetter("hola"));
+        assertTrue(stringOperations.stringStartsWithUppercaseLetter("Hola"));
     }
 }

@@ -61,7 +61,12 @@ public interface ArrayOperations {
      *
      *  The result should be:
      *
-     *  [[1, 2], [5, -2], [10, -7]]
+     *  [[1, 2], [2 , 1] [5, -2], [10, -7], [-2, 5], [-7, 10]]
+     *
+     *  Assumptions:
+     *    * The numbers in <code>numbers</code> are all different.
+     *    * The order of the elements count as the same tuple. -> [1, 2] and [2 , 1] would be the same, so just return
+     *      one.
      *
      * @param numbers the array of numbers to build tuples from.
      * @param n the target number that the sum of each tuple should be equal to.

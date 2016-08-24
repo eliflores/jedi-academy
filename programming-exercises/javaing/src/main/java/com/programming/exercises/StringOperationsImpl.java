@@ -18,4 +18,16 @@ public class StringOperationsImpl implements StringOperations {
 
         return substrings;
     }
+
+    @Override
+    public boolean stringStartsWithUppercaseLetter(String s) {
+        if (s == null || s.length() == 0) {
+            return false;
+        }
+
+        char firstCharacter = s.charAt(0);
+        return Character.isUpperCase(firstCharacter);
+
+    }
+
 }

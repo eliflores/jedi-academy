@@ -1,6 +1,10 @@
 package com.programming.exercises;
 
 import java.util.*;
+import java.util.function.Function;
+import java.util.function.IntFunction;
+import java.util.function.ToIntFunction;
+import java.util.stream.Collectors;
 
 class ArrayOperationsImpl implements ArrayOperations {
     @Override
@@ -86,7 +90,34 @@ class ArrayOperationsImpl implements ArrayOperations {
 
     @Override
     public int[][] findSumTuples(int[] numbers, int n) {
-        return new int[0][];
+        if (numbers == null || numbers.length == 0) {
+            return new int[0][];
+        }
+        Set<Integer> setOfNumbers = Arrays.stream(numbers).boxed().collect(Collectors.toSet());
+        Map<Integer, Integer> tuples = new HashMap<>();
+
+        Integer target;
+        boolean isPresent;
+
+        Iterator<Integer> iterator = setOfNumbers.iterator();
+        while (iterator.hasNext()) {
+            Integer number = iterator.next();
+            target = n - number;
+            isPresent = setOfNumbers.contains(target);
+            if (isPresent) {
+                tuples.put(number, target);
+                iterator.remove();
+            }
+        }
+
+        int tuplesResult[][] = new int[tuples.size()][2];
+        int i = 0;
+        for (Map.Entry<Integer, Integer> tuple : tuples.entrySet()) {
+            tuplesResult[i][0] = tuple.getKey();
+            tuplesResult[i][1] = tuple.getValue();
+            i++;
+        }
+        return tuplesResult;
     }
 
     private int sumNumbers(int[] numbers, int sum, int index) {
