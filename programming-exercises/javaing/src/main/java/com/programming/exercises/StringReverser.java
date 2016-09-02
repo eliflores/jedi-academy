@@ -6,7 +6,7 @@ public interface StringReverser {
      *
      * @param arr - array to be reversed
      */
-    public void reverse(char arr[]);
+    void reverse(char arr[]);
 
-    public void reverseWords(char arr[]);
+    void reverseWords(char arr[]);
 }
