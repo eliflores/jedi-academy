@@ -1,7 +1,9 @@
 package com.programming.datastructures;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Set;
 
 public class BinaryTree {
     private Node _root;
@@ -35,25 +37,71 @@ public class BinaryTree {
         return node;
     }
 
-    public String traverseMeBreadthFirstRecursive() {
+    public Node findNode(int data) {
+        return findNodeBreadthFirst(_root, data);
+
+    }
+
+    private Node findNodeBreadthFirst(Node root, int data) {
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            Node node = queue.poll();
+            if (node != null) {
+                if (node._data == data) {
+                    return node;
+                }
+                queue.add(node._left);
+                queue.add(node._right);
+            }
+        }
+        return null;
+    }
+
+    public boolean isLeaf(int data) {
+        Node node = findNodeBreadthFirst(_root, data);
+        return node != null && node._right == null && node._left == null;
+
+    }
+
+    public boolean hasCycle() {
+        Set<Integer> alreadyVisitedNodes = new HashSet<>();
+        return hasCycleDepthFirst(_root._left, alreadyVisitedNodes) || hasCycleDepthFirst(_root._right, alreadyVisitedNodes);
+    }
+
+    private boolean hasCycleDepthFirst(Node root, Set<Integer> alreadyVisitedNodes) {
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            Node node = queue.poll();
+            if (node != null) {
+                if (alreadyVisitedNodes.contains(node._data)) {
+                    return true;
+                }
+                alreadyVisitedNodes.add(node._data);
+                queue.add(node._left);
+                queue.add(node._right);
+            }
+        }
+        return false;
+    }
+
+    public String traverseMeDepthFirstRecursive() {
         StringBuilder stringBuilder = new StringBuilder();
-        traverseBreadthFirst(_root, stringBuilder);
+        traverseDepthFirst(_root, stringBuilder);
         return stringBuilder.toString();
     }
 
-    private void traverseBreadthFirst(Node node, StringBuilder stringBuilder) {
+    private void traverseDepthFirst(Node node, StringBuilder stringBuilder) {
         if (node == null) {
             return;
         }
         stringBuilder.append(node._data).append(" ");
-        traverseBreadthFirst(node._left, stringBuilder);
-        traverseBreadthFirst(node._right, stringBuilder);
+        traverseDepthFirst(node._left, stringBuilder);
+        traverseDepthFirst(node._right, stringBuilder);
     }
 
-    /**
-     * Traverse this tree in level order. Each line represents a level in the tree. Does not use recursion.
-     */
-    public String traverseMeBreadthFirstNonRecursive() {
+    public String traverseMeDepthFirstNonRecursive() {
         StringBuilder stringBuilder = new StringBuilder();
         if (_root != null) {
             stringBuilder.append(_root._data).append(" ");
@@ -80,19 +128,14 @@ public class BinaryTree {
         return stringBuilder.toString();
     }
 
-    /**
-     * Traverse this tree in level order. Each line represents a level in the tree. Does not use recursion.
-     */
-    public String traverseMeLevelOrderNonRecursive() {
+
+    public String traverseMeBreathFirstNonRecursive() {
         if (_root != null) {
             return traverseTreeNonRecursive(_root);
         }
         return "";
     }
 
-    /**
-     * Traverse a mirror tree from this tree in level order. Each line represents a level in the mirror tree. Dos not use recursion.
-     */
     public String traverseMyMirrorTreeNonRecursive() {
         StringBuilder stringBuilder = new StringBuilder();
         Queue<Node> queue = new LinkedList<>();
@@ -110,25 +153,20 @@ public class BinaryTree {
         return stringBuilder.toString();
     }
 
-    /**
-     * Traverse this tree in level order. Each line represents a level in the tree. Uses recursion.
-     */
-    public String traverseMeLevelOrderRecursive() {
+    public String traverseMeBreadthFirstRecursive() {
         StringBuilder stringBuilder = new StringBuilder();
-        traverseLevelOrderRecursive(_root, stringBuilder);
+        traverseBreadthFirstRecursive(_root, stringBuilder);
         return stringBuilder.toString();
     }
 
-    /**
-     * Traverse a mirror tree from this tree in level order. Each line represents a level in the mirror tree. Uses recursion.
-     */
+
     public String traverseMirrorTreeRecursive() {
         StringBuilder stringBuilder = new StringBuilder();
-        traverseMirrorTreeLevelOrder(_root, stringBuilder);
+        traverseMirrorTreeBreadthFirst(_root, stringBuilder);
         return stringBuilder.toString();
     }
 
-    private void traverseMirrorTreeLevelOrder(Node node, StringBuilder stringBuilder) {
+    private void traverseMirrorTreeBreadthFirst(Node node, StringBuilder stringBuilder) {
         int treeHeight = getHeight();
         for (int level = 1; level <= treeHeight; level++) {
             traverseMirrorTreeInLevel(node, level, stringBuilder);
@@ -146,7 +184,7 @@ public class BinaryTree {
         }
     }
 
-    private void traverseLevelOrderRecursive(Node node, StringBuilder stringBuilder) {
+    private void traverseBreadthFirstRecursive(Node node, StringBuilder stringBuilder) {
         int treeHeight = getHeight();
         for (int level = 1; level <= treeHeight; level++) {
             traverseNodesInLevel(node, level, stringBuilder);
@@ -164,15 +202,27 @@ public class BinaryTree {
         }
     }
 
-    private static class Node {
-        Node _left;
-        Node _right;
-        int _data;
+    static class Node {
+        private Node _left;
+        private Node _right;
+        private int _data;
 
-        Node(int data) {
+        private Node(int data) {
             _left = null;
             _right = null;
             _data = data;
+        }
+
+        void setLeft(Node node) {
+            _left = node;
+        }
+
+        void setRight(Node node) {
+            _right = node;
+        }
+
+        public int getData() {
+            return _data;
         }
     }
 }

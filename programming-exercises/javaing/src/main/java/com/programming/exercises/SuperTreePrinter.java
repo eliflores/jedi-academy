@@ -16,12 +16,12 @@ public class SuperTreePrinter {
 
         System.out.println("Tree Height: " + binaryTree.getHeight());
 
-        System.out.println("Print Tree in level order (recursive): " + binaryTree.traverseMeLevelOrderRecursive());
-        System.out.println("Print Mirror Tree in level order (recursive): " + binaryTree.traverseMirrorTreeRecursive());
-        System.out.println("Print Tree using BF (recursive): " + binaryTree.traverseMeBreadthFirstRecursive());
+        System.out.println("Print Tree DFS (recursive): " + binaryTree.traverseMeDepthFirstRecursive());
+        System.out.println("Print Mirror Tree BFS (recursive): " + binaryTree.traverseMirrorTreeRecursive());
+        System.out.println("Print Tree using DFS (non-recursive): " + binaryTree.traverseMeDepthFirstNonRecursive());
 
-        System.out.println("Print Tree in level order (non-recursive): " + binaryTree.traverseMeLevelOrderNonRecursive());
-        System.out.println("Print Mirror Tree in level order (non-recursive): " + binaryTree.traverseMyMirrorTreeNonRecursive());
-        System.out.println("Print Tree using BF (non-recursive): " + binaryTree.traverseMeBreadthFirstNonRecursive());
+        System.out.println("Print Tree BFS (non-recursive): " + binaryTree.traverseMeBreathFirstNonRecursive());
+        System.out.println("Print Mirror Tree BFS (non-recursive): " + binaryTree.traverseMyMirrorTreeNonRecursive());
+        System.out.println("Print Tree using BFS (non-recursive): " + binaryTree.traverseMeBreadthFirstRecursive());
     }
 }

@@ -30,13 +30,13 @@ public class BinaryTreeTest {
     }
 
     @Test
-    public void traverseMeBreadthFirstRecursive() throws Exception {
-        assertThat(binaryTree.traverseMeBreadthFirstRecursive(), is("5 4 2 3 8 7 10 12 "));
+    public void traverseMeDepthFirstRecursive() throws Exception {
+        assertThat(binaryTree.traverseMeDepthFirstRecursive(), is("5 4 2 3 8 7 10 12 "));
     }
 
     @Test
-    public void traverseMeLevelOrderNonRecursive() throws Exception {
-        assertThat(binaryTree.traverseMeLevelOrderNonRecursive(), is("5 4 8 2 7 10 3 12 "));
+    public void traverseMeBreathFirstNonRecursive() throws Exception {
+        assertThat(binaryTree.traverseMeBreathFirstNonRecursive(), is("5 4 8 2 7 10 3 12 "));
     }
 
     @Test
@@ -45,8 +45,8 @@ public class BinaryTreeTest {
     }
 
     @Test
-    public void traverseMeLevelOrderRecursive() throws Exception {
-        assertThat(binaryTree.traverseMeLevelOrderRecursive(), is("5 4 8 2 7 10 3 12 "));
+    public void traverseMeBreadthFirstRecursive() throws Exception {
+        assertThat(binaryTree.traverseMeBreadthFirstRecursive(), is("5 4 8 2 7 10 3 12 "));
     }
 
     @Test
@@ -55,7 +55,47 @@ public class BinaryTreeTest {
     }
 
     @Test
-    public void traverseMeBreadthFirstNonRecursive() throws Exception {
-        assertThat(binaryTree.traverseMeBreadthFirstNonRecursive(), is("5 4 2 3 8 7 10 12 "));
+    public void traverseMeDepthFirstNonRecursive() throws Exception {
+        assertThat(binaryTree.traverseMeDepthFirstNonRecursive(), is("5 4 2 3 8 7 10 12 "));
+    }
+
+    @Test
+    public void findNode() throws Exception {
+        BinaryTree.Node node = binaryTree.findNode(10);
+        assertNotNull(node);
+        assertThat(node.getData(), is(10));
+
+        BinaryTree.Node notFoundNode = binaryTree.findNode(20);
+        assertNull(notFoundNode);
+    }
+
+    @Test
+    public void isLeaf() throws Exception {
+        assertFalse(binaryTree.isLeaf(5));
+        assertFalse(binaryTree.isLeaf(4));
+        assertFalse(binaryTree.isLeaf(2));
+        assertTrue(binaryTree.isLeaf(3));
+        assertTrue(binaryTree.isLeaf(7));
+        assertTrue(binaryTree.isLeaf(12));
+
+    }
+
+    @Test
+    public void hasCycle() throws Exception {
+        assertFalse(binaryTree.hasCycle());
+
+        BinaryTree binaryTreeWithCycle = new BinaryTree();
+        binaryTreeWithCycle.insert(5);
+        binaryTreeWithCycle.insert(4);
+        binaryTreeWithCycle.insert(8);
+        binaryTreeWithCycle.insert(2);
+        binaryTreeWithCycle.insert(3);
+
+        // Here we'll insert the cycle.
+        BinaryTree.Node node = binaryTreeWithCycle.findNode(3);
+        BinaryTree.Node nodeToCycleTo = binaryTreeWithCycle.findNode(4);
+        node.setLeft(nodeToCycleTo);
+
+        assertTrue(binaryTreeWithCycle.hasCycle());
     }
 }
