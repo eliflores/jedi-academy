@@ -2,6 +2,7 @@ package com.programming.exercises;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 class NumberOperationsImpl implements NumberOperations {
     @Override
@@ -90,4 +91,11 @@ class NumberOperationsImpl implements NumberOperations {
         }
     }
 
+    @Override
+    public int sumOfPositiveIntegersInN(int n) {
+        if (n == 1) {
+            return 1;
+        }
+        return (int) Math.ceil(n * (n + 1) / (double) 2);
+    }
 }

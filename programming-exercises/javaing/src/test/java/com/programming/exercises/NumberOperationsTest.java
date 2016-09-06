@@ -6,15 +6,15 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class NumberOperationsTest {
+    private final NumberOperations numberOperations = new NumberOperationsImpl();
+
     @Test
     public void threeSum() {
-        NumberOperations numberOperations = new NumberOperationsImpl();
         assertEquals(4, numberOperations.threeSum(new int[]{30, -40, -20, -10, 40, 0, 10, 5}));
     }
 
     @Test
     public void largestArrangedNumber() {
-        NumberOperations numberOperations = new NumberOperationsImpl();
         assertEquals(0, numberOperations.largestArrangedNumber(null));
         assertEquals(0, numberOperations.largestArrangedNumber(new int[0]));
         assertEquals(1, numberOperations.largestArrangedNumber(new int[]{1}));
@@ -27,7 +27,6 @@ public class NumberOperationsTest {
 
     @Test
     public void digits() {
-        NumberOperations numberOperations = new NumberOperationsImpl();
         assertThat(numberOperations.digits(0), is(new int[]{0}));
         assertThat(numberOperations.digits(1), is(new int[]{1}));
         assertThat(numberOperations.digits(10), is(new int[]{1, 0}));
@@ -38,7 +37,6 @@ public class NumberOperationsTest {
 
     @Test
     public void reverse() {
-        NumberOperations numberOperations = new NumberOperationsImpl();
         int[] emptyArray = new int[0];
         numberOperations.reverse(emptyArray);
         assertThat(emptyArray.length, is(0));
@@ -59,5 +57,14 @@ public class NumberOperationsTest {
         assertThat(pairNumberOfElements[1], is(3));
         assertThat(pairNumberOfElements[2], is(1));
         assertThat(pairNumberOfElements[3], is(4));
+    }
+
+    @Test
+    public void sumOfPositiveIntegersInN() {
+        assertThat(numberOperations.sumOfPositiveIntegersInN(0), is(0));
+        assertThat(numberOperations.sumOfPositiveIntegersInN(1), is(1));
+        assertThat(numberOperations.sumOfPositiveIntegersInN(2), is(3));
+        assertThat(numberOperations.sumOfPositiveIntegersInN(3), is(6));
+        assertThat(numberOperations.sumOfPositiveIntegersInN(8), is(36));
     }
 }

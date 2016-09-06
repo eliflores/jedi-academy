@@ -13,6 +13,7 @@ interface NumberOperations {
      * Given a positive number <code>n</code> return the list of its digits ordered by weight (unit, ten, hundreds,
      * etc).
      * For example: 450, return [4, 5, 0]
+     *
      * @param n
      * @return
      */
@@ -21,10 +22,11 @@ interface NumberOperations {
     /**
      * Given an array of non negative integers, arrange them such that they form the largest possible number.
      * For example, given [50, 2, 1, 9], the largest formed number is 95021.
+     *
      * @param numbers
      * @return The largest possible number from the combination of numbers in the list.
      */
-    long largestArrangedNumber(int [] numbers);
+    long largestArrangedNumber(int[] numbers);
 
     /**
      * Reverse an array of numbers
@@ -32,4 +34,10 @@ interface NumberOperations {
      * @param numbers array to be reversed
      */
     void reverse(int[] numbers);
+
+    /**
+     * @param n Integer n.
+     * @return the count the total of 1  +2 + ... + n
+     */
+    int sumOfPositiveIntegersInN(int n);
 }
