@@ -67,4 +67,19 @@ public class NumberOperationsTest {
         assertThat(numberOperations.sumOfPositiveIntegersInN(3), is(6));
         assertThat(numberOperations.sumOfPositiveIntegersInN(8), is(36));
     }
+
+    @Test
+    public void isPrime() {
+        assertFalse(numberOperations.isPrime(-1));
+        assertFalse(numberOperations.isPrime(0));
+        assertFalse(numberOperations.isPrime(1));
+
+        assertFalse(numberOperations.isPrime(4));
+        assertFalse(numberOperations.isPrime(33));
+
+        assertTrue(numberOperations.isPrime(2));
+        assertTrue(numberOperations.isPrime(3));
+        assertTrue(numberOperations.isPrime(5));
+        assertTrue(numberOperations.isPrime(31));
+    }
 }

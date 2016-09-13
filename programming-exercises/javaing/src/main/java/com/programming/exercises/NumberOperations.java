@@ -40,4 +40,10 @@ interface NumberOperations {
      * @return the count the total of 1  +2 + ... + n
      */
     int sumOfPositiveIntegersInN(int n);
+
+    /**
+     * @param n
+     * @return <code>true</code> if the number is prime, <code>false</code> if it's not.
+     */
+    boolean isPrime(int n);
 }
