@@ -46,4 +46,11 @@ interface NumberOperations {
      * @return <code>true</code> if the number is prime, <code>false</code> if it's not.
      */
     boolean isPrime(int n);
+
+    /**
+     *
+     * @param n where n is >= 0;
+     * @return the sum of the digits in N.
+     */
+    int sumDigits(int n);
 }

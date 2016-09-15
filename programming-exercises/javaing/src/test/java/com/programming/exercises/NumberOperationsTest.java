@@ -82,4 +82,14 @@ public class NumberOperationsTest {
         assertTrue(numberOperations.isPrime(5));
         assertTrue(numberOperations.isPrime(31));
     }
+
+    @Test
+    public void sumDigits() {
+        assertThat(numberOperations.sumDigits(0), is(0));
+        assertThat(numberOperations.sumDigits(1), is(1));
+        assertThat(numberOperations.sumDigits(10), is(1));
+        assertThat(numberOperations.sumDigits(101), is(2));
+        assertThat(numberOperations.sumDigits(120), is(3));
+        assertThat(numberOperations.sumDigits(1897), is(25));
+    }
 }
