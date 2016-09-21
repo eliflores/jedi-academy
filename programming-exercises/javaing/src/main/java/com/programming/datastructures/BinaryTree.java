@@ -64,6 +64,17 @@ public class BinaryTree {
 
     }
 
+    public boolean isBalanced() {
+        return isBalanced(_root);
+    }
+
+    private boolean isBalanced(Node root) {
+        return (root == null)
+                || (isBalanced(root._left) //
+                && isBalanced(root._right) //
+                && (getHeight(root._left) - getHeight(root._right)) <= 1);
+    }
+
     public boolean hasCycle() {
         Set<Integer> alreadyVisitedNodes = new HashSet<>();
         return hasCycleDepthFirst(_root._left, alreadyVisitedNodes) || hasCycleDepthFirst(_root._right, alreadyVisitedNodes);

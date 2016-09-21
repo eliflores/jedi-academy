@@ -98,4 +98,24 @@ public class BinaryTreeTest {
 
         assertTrue(binaryTreeWithCycle.hasCycle());
     }
+
+    @Test
+    public void isBalanced() {
+        BinaryTree emptyBinaryTree = new BinaryTree();
+        assertTrue(emptyBinaryTree.isBalanced());
+
+        assertFalse(binaryTree.isBalanced());
+
+        BinaryTree balancedBinaryTree = new BinaryTree();
+        balancedBinaryTree.insert(6);
+        balancedBinaryTree.insert(4);
+        balancedBinaryTree.insert(2);
+        balancedBinaryTree.insert(5);
+        balancedBinaryTree.insert(1);
+        balancedBinaryTree.insert(8);
+        balancedBinaryTree.insert(7);
+        balancedBinaryTree.insert(9);
+
+        assertTrue(balancedBinaryTree.isBalanced());
+    }
 }
