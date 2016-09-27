@@ -40,6 +40,18 @@ class NumberOperationsImpl implements NumberOperations {
     }
 
     @Override
+    public int numberOfDigits(int n) {
+        int absN = Math.abs(n);
+        int exp = 0;
+        int digitsCounter = 0;
+        while ((absN / (int) Math.pow(10, exp)) > 0) {
+            digitsCounter++;
+            exp++;
+        }
+        return digitsCounter;
+    }
+
+    @Override
     public long largestArrangedNumber(int[] numbers) {
         if (numbers == null || numbers.length == 0) {
             return 0;

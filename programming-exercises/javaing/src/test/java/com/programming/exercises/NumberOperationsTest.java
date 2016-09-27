@@ -36,6 +36,23 @@ public class NumberOperationsTest {
     }
 
     @Test
+    public void numberOfDigits() {
+        assertThat(numberOperations.numberOfDigits(-11111), is(5));
+        assertThat(numberOperations.numberOfDigits(-3589), is(4));
+        assertThat(numberOperations.numberOfDigits(-489), is(3));
+        assertThat(numberOperations.numberOfDigits(-25), is(2));
+        assertThat(numberOperations.numberOfDigits(-10), is(2));
+        assertThat(numberOperations.numberOfDigits(-1), is(1));
+        assertThat(numberOperations.numberOfDigits(0), is(0));
+        assertThat(numberOperations.numberOfDigits(1), is(1));
+        assertThat(numberOperations.numberOfDigits(10), is(2));
+        assertThat(numberOperations.numberOfDigits(25), is(2));
+        assertThat(numberOperations.numberOfDigits(489), is(3));
+        assertThat(numberOperations.numberOfDigits(3589), is(4));
+        assertThat(numberOperations.numberOfDigits(11111), is(5));
+    }
+
+    @Test
     public void reverse() {
         int[] emptyArray = new int[0];
         numberOperations.reverse(emptyArray);

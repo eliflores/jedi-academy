@@ -20,6 +20,15 @@ interface NumberOperations {
     int[] digits(int n);
 
     /**
+     * Given a number <code>n</code> (positive or negative) return the number of digits that the number has.
+     * For example: 450, return [4, 5, 0]
+     *
+     * @param n
+     * @return the number of digits that the <code>n</code> has.
+     */
+    int numberOfDigits(int n);
+
+    /**
      * Given an array of non negative integers, arrange them such that they form the largest possible number.
      * For example, given [50, 2, 1, 9], the largest formed number is 95021.
      *
