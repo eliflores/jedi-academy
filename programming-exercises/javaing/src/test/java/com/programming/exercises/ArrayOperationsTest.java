@@ -3,7 +3,7 @@ package com.programming.exercises;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 public class ArrayOperationsTest {
     private final ArrayOperationsImpl arrayOperations = new ArrayOperationsImpl();
@@ -75,5 +75,59 @@ public class ArrayOperationsTest {
         assertThat(arrayOperations.findSumTuples(new int[]{1, 2, 3, 4, 5, 6, 7, 10, -2, -7}, 3),
                 is(new int[][]{{1, 2}, {-2, 5}, {-7, 10}}));
 
+    }
+
+    @Test
+    public void hasElement() {
+        assertFalse(arrayOperations.hasElement(null, 10));
+        assertFalse(arrayOperations.hasElement(new int[]{}, 10));
+        assertFalse(arrayOperations.hasElement(new int[]{4}, 10));
+        assertFalse(arrayOperations.hasElement(new int[]{4, 5}, 10));
+        assertFalse(arrayOperations.hasElement(new int[]{1, 4, 5, 10}, 20));
+
+        assertTrue(arrayOperations.hasElement(new int[]{4}, 4));
+        assertTrue(arrayOperations.hasElement(new int[]{-10, -5}, -10));
+        assertTrue(arrayOperations.hasElement(new int[]{-10, -5}, -5));
+        assertTrue(arrayOperations.hasElement(new int[]{-1, 4, 5, 10}, -1));
+        assertTrue(arrayOperations.hasElement(new int[]{1, 4, 5, 10}, 10));
+        assertTrue(arrayOperations.hasElement(new int[]{1, 4, 5, 10}, 1));
+        assertTrue(arrayOperations.hasElement(new int[]{1, 4, 5, 10}, 4));
+        assertTrue(arrayOperations.hasElement(new int[]{1, 4, 5, 10}, 5));
+    }
+
+    @Test
+    public void mergeArrays() {
+        assertThat(arrayOperations.mergeArrays(null, null), is(new int[0]));
+        assertThat(arrayOperations.mergeArrays(null, new int[0]), is(new int[0]));
+        assertThat(arrayOperations.mergeArrays(new int[0], null), is(new int[0]));
+        assertThat(arrayOperations.mergeArrays(null, new int[]{2, 3}), is(new int[]{2, 3}));
+        assertThat(arrayOperations.mergeArrays(new int[]{2, 3}, null), is(new int[]{2, 3}));
+        assertThat(arrayOperations.mergeArrays(new int[0], new int[]{2, 3}), is(new int[]{2, 3}));
+        assertThat(arrayOperations.mergeArrays(new int[]{2, 3}, new int[0]), is(new int[]{2, 3}));
+
+        assertThat(arrayOperations.mergeArrays(new int[]{14}, new int[]{33}), is(new int[]{14, 33}));
+        assertThat(arrayOperations.mergeArrays(new int[]{27}, new int[]{10}), is(new int[]{10, 27}));
+        assertThat(arrayOperations.mergeArrays(new int[]{14, 33}, new int[]{10, 27}), is(new int[]{10, 14, 27, 33}));
+        assertThat(arrayOperations.mergeArrays(new int[]{19, 35}, new int[]{42, 44}), is(new int[]{19, 35, 42, 44}));
+        assertThat(arrayOperations.mergeArrays(new int[]{10, 14, 27, 33}, new int[]{19, 35, 42, 44,}), is(new
+                int[]{10, 14, 19, 27, 33, 35, 42, 44}));
+    }
+
+    @Test
+    public void sortArrayUsingMergeSort() {
+        int[] emptyArrayOfNumbers = new int[]{};
+        assertThat(arrayOperations.sortArrayUsingMergeSort(emptyArrayOfNumbers), is(new int[]{}));
+
+        int[] oneElementArray = new int[]{1};
+        assertThat(arrayOperations.sortArrayUsingMergeSort(oneElementArray), is(new int[]{1}));
+
+        int[] twoElementArray = new int[]{4, -5};
+        assertThat(arrayOperations.sortArrayUsingMergeSort(twoElementArray), is(new int[]{-5, 4}));
+
+        int[] sortedArray = new int[]{-1, 0, 1};
+        assertThat(arrayOperations.sortArrayUsingMergeSort(sortedArray), is(new int[]{-1, 0, 1}));
+
+        int[] unsortedArray = new int[]{1000, 10000, 0, 10, -100000};
+        assertThat(arrayOperations.sortArrayUsingMergeSort(unsortedArray), is(new int[]{-100000, 0, 10, 1000, 10000}));
     }
 }

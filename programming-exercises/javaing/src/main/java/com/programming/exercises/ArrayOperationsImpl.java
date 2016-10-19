@@ -1,9 +1,6 @@
 package com.programming.exercises;
 
 import java.util.*;
-import java.util.function.Function;
-import java.util.function.IntFunction;
-import java.util.function.ToIntFunction;
 import java.util.stream.Collectors;
 
 class ArrayOperationsImpl implements ArrayOperations {
@@ -139,5 +136,83 @@ class ArrayOperationsImpl implements ArrayOperations {
             numberOfOccurrences.put(number, occurrence);
         }
         return numberOfOccurrences;
+    }
+
+    @Override
+    public int[] sortArrayUsingMergeSort(int[] numbers) {
+        if (numbers == null || numbers.length <= 1) {
+            return numbers;
+        }
+
+        int[] left = sortArrayUsingMergeSort(Arrays.copyOfRange(numbers, 0, numbers.length / 2));
+        int[] right = sortArrayUsingMergeSort(Arrays.copyOfRange(numbers, numbers.length / 2, numbers.length));
+        numbers = mergeArrays(left, right);
+        return numbers;
+    }
+
+    @Override
+    public int[] mergeArrays(int[] left, int[] right) {
+        if (left == null) {
+            left = new int[0];
+        }
+
+        if (right == null) {
+            right = new int[0];
+        }
+        int[] mergedArray = new int[left.length + right.length];
+        int lengthLeft = left.length;
+        int lengthRight = right.length;
+        int i = 0;
+        int j = 0;
+        int k = 0;
+
+        while (i < lengthLeft && j < lengthRight) {
+            if (left[i] < right[j]) {
+                mergedArray[k] = left[i];
+                i++;
+            } else {
+                mergedArray[k] = right[j];
+                j++;
+            }
+            k++;
+        }
+
+        if (i < lengthLeft) {
+            for (int l = i; l < lengthLeft; l++) {
+                mergedArray[k] = left[l];
+                k++;
+            }
+        } else if (j < lengthRight) {
+            for (int l = j; l < lengthRight; l++) {
+                mergedArray[k] = right[l];
+                k++;
+            }
+        }
+        return mergedArray;
+    }
+
+    @Override
+    public boolean hasElement(int[] numbers, int number) {
+        if (numbers == null || numbers.length == 0) {
+            return false;
+        }
+
+        int n = numbers.length;
+        int min = 0;
+        int max = n - 1;
+        int target;
+
+        while (min <= max) {
+            target = (min + max) / 2;
+            if (numbers[target] == number) {
+                return true;
+            } else if (number > numbers[target]) {
+                min = target + 1;
+            } else {
+                max = target - 1;
+            }
+        }
+
+        return false;
     }
 }

@@ -57,20 +57,35 @@ public interface ArrayOperations {
     /**
      * Method that returns an array of tuples that when added are equal to <code>n</code>
      * Example:
-     *  Say numbers = [1, 2, 3, 4, 5, 6, 7, 10, -2, -7] and n = 3
-     *
-     *  The result should be:
-     *
-     *  [[1, 2], [2 , 1] [5, -2], [10, -7], [-2, 5], [-7, 10]]
-     *
-     *  Assumptions:
-     *    * The numbers in <code>numbers</code> are all different.
-     *    * The order of the elements count as the same tuple. -> [1, 2] and [2 , 1] would be the same, so just return
-     *      one.
+     * Say numbers = [1, 2, 3, 4, 5, 6, 7, 10, -2, -7] and n = 3
+     * <p>
+     * The result should be:
+     * <p>
+     * [[1, 2], [2 , 1] [5, -2], [10, -7], [-2, 5], [-7, 10]]
+     * <p>
+     * Assumptions:
+     * * The numbers in <code>numbers</code> are all different.
+     * * The order of the elements count as the same tuple. -> [1, 2] and [2 , 1] would be the same, so just return
+     * one.
      *
      * @param numbers the array of numbers to build tuples from.
-     * @param n the target number that the sum of each tuple should be equal to.
+     * @param n       the target number that the sum of each tuple should be equal to.
      * @return a matrix of 2 x 2 where each line represents a tuple.
      */
-    int [][] findSumTuples(int [] numbers, int n);
+    int[][] findSumTuples(int[] numbers, int n);
+
+    int[] mergeArrays(int[] left, int[] right);
+
+    int[] sortArrayUsingMergeSort(int[] numbers);
+
+    /**
+     * The array of integers that is expected to be sorted.
+     * The algorithm used to find the element is BinarySearch (O(log N))
+     * The complexity of the algorithm in this method is O(log N).
+     *
+     * @param numbers array of <code>sorted</code> numbers
+     * @param number  number we are looking for.
+     * @return <code>true</code> if the array has number; <code>false</code> if array does not have number.
+     */
+    boolean hasElement(int[] numbers, int number);
 }
